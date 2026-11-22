@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  pull_request:
+
+jobs:
+  # Pure-Swift core: models, access rules, geofence planner, and data-quality checks on the
+  # bundled content. Runs on Linux, so it is fast and cheap.
+  tourkit:
+    runs-on: ubuntu-latest
+    container: swift:6.1
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift test --package-path Packages/TourKit
+
+  # Builds the SwiftUI app for the simulator. The app target is not compiled anywhere else
+  # (no Mac in the authoring environment), so this job is the compile check.
+  # Note: macOS runner minutes are billed at 10× on private repositories.
+  app:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: xcodegen generate
+      - name: Build (iOS Simulator, unsigned)
+        run: |
+          xcodebuild build \
+            -project DCAudioTours.xcodeproj \
+            -scheme DCAudioTours \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO
