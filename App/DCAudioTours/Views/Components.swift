@@ -27,8 +27,12 @@ struct LineStack: View {
 /// Small uppercase label that sits above serif headlines ("STOP OVERVIEW"), with an optional accent dot.
 struct Eyebrow: View {
     let text: LocalizedStringKey
-    var dot: Color? = nil
-    var onDark = false
+    var dot: Color?
+    var onDark: Bool
+
+    init(_ text: LocalizedStringKey, dot: Color? = nil, onDark: Bool = false) {
+        self.text = text; self.dot = dot; self.onDark = onDark
+    }
 
     var body: some View {
         HStack(spacing: 9) {
