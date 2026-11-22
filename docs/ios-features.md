@@ -7,13 +7,13 @@ glanceable, low-attention use — and for things a mobile web page cannot do.
 
 | Feature | API | Why it matters | State |
 |---|---|---|---|
-| Lock-screen narration + controls | AVAudioSession `.spokenAudio`, `MPNowPlayingInfoCenter`, `MPRemoteCommandCenter` | Walk with the phone in a pocket | Written, unverified |
-| Arrival alerts | `CLCircularRegion` monitoring, `UNUserNotificationCenter` | Right stop, right moment, no GPS polling | Written, unverified |
-| Walking routes from every Metro exit | `MKDirections` `.walking` | Replaces estimates and the public OSRM demo server | Written, unverified |
-| Tour maps with real routes | SwiftUI `Map`, `MapPolyline` | Orientation | Written, unverified |
-| Resume by voice / Spotlight | App Intents, Core Spotlight | "Resume my tour" with no setup | Written, unverified |
-| Accessibility | Dynamic Type, VoiceOver labels, adjustable scrubber | Wide audience, 8 languages | Partly written |
-| Haptics | `sensoryFeedback`, `UINotificationFeedbackGenerator` | Arrival you can feel | Written, unverified |
+| Lock-screen narration + controls | AVAudioSession `.spokenAudio`, `MPNowPlayingInfoCenter`, `MPRemoteCommandCenter` | Walk with the phone in a pocket | Compiles; not yet run |
+| Arrival alerts | `CLCircularRegion` monitoring, `UNUserNotificationCenter` | Right stop, right moment, no GPS polling | Compiles; not yet run |
+| Walking routes from every Metro exit | `MKDirections` `.walking` | Replaces estimates and the public OSRM demo server | Compiles; not yet run |
+| Tour maps with real routes | SwiftUI `Map`, `MapPolyline` | Orientation | Compiles; not yet run |
+| Resume by voice / Spotlight | App Intents, Core Spotlight | "Resume my tour" with no setup | Compiles; not yet run |
+| Accessibility | Dynamic Type, VoiceOver labels, adjustable scrubber | Wide audience, 8 languages | Compiles; not yet run |
+| Haptics | `sensoryFeedback`, `UINotificationFeedbackGenerator` | Arrival you can feel | Compiles; not yet run |
 | Privacy manifest | `PrivacyInfo.xcprivacy` | Required for submission | Done |
 
 ## Phase 2 — paid, offline, glanceable
