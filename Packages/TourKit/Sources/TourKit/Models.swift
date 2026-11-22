@@ -146,20 +146,22 @@ public struct Tour: Codable, Hashable, Sendable, Identifiable {
     public let tagline: LocalizedText
     public let marketing: LocalizedText?
     public let accentLine: MetroLine?
+    /// Brand colour for this tour as `#rrggbb` (list dot, glow). Matches the web app's tour accents.
+    public let accentHex: String?
     public let stops: [Stop]
     public let route: WalkingRoute?
 
     public init(
         id: String, kind: TourKind = .themed, isFree: Bool = false, title: LocalizedText,
         tagline: LocalizedText = LocalizedText([:]), marketing: LocalizedText? = nil,
-        accentLine: MetroLine? = nil, stops: [Stop], route: WalkingRoute? = nil
+        accentLine: MetroLine? = nil, accentHex: String? = nil, stops: [Stop], route: WalkingRoute? = nil
     ) {
         self.id = id; self.kind = kind; self.isFree = isFree; self.title = title; self.tagline = tagline
-        self.marketing = marketing; self.accentLine = accentLine; self.stops = stops; self.route = route
+        self.marketing = marketing; self.accentLine = accentLine; self.accentHex = accentHex; self.stops = stops; self.route = route
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, kind, isFree, title, tagline, marketing, accentLine, stops, route
+        case id, kind, isFree, title, tagline, marketing, accentLine, accentHex, stops, route
     }
 
     public init(from decoder: Decoder) throws {
@@ -171,8 +173,15 @@ public struct Tour: Codable, Hashable, Sendable, Identifiable {
         tagline = try c.decodeIfPresent(LocalizedText.self, forKey: .tagline) ?? LocalizedText([:])
         marketing = try c.decodeIfPresent(LocalizedText.self, forKey: .marketing)
         accentLine = try c.decodeIfPresent(String.self, forKey: .accentLine).flatMap(MetroLine.init(rawValue:))
+        accentHex = try c.decodeIfPresent(String.self, forKey: .accentHex)
         stops = try c.decode([Stop].self, forKey: .stops)
         route = try c.decodeIfPresent(WalkingRoute.self, forKey: .route)
+    }
+
+    /// `accentHex` parsed to 0xRRGGBB, or nil if absent/malformed.
+    public var accentRGB: UInt32? {
+        guard let hex = accentHex?.trimmingCharacters(in: CharacterSet(charactersIn: "#")), hex.count == 6 else { return nil }
+        return UInt32(hex, radix: 16)
     }
 
     /// Colour the tour is themed with: its declared line, else the first stop's first line.

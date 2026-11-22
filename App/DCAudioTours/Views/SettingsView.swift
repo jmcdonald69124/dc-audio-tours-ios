@@ -47,7 +47,10 @@ struct SettingsView: View {
                 }
                 #endif
             }
-            .navigationTitle("Settings")
+            .navigationTitle("More")
+            .scrollContentBackground(.hidden)
+            .background(Ed.bg.ignoresSafeArea())
+            .tint(Ed.accent)
             .miniPlayerInset()
         }
     }

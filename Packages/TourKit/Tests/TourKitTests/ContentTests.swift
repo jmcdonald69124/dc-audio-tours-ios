@@ -105,6 +105,12 @@ struct CatalogTests {
         #expect(short.isEmpty, "legs shorter than straight line: \(short)")
     }
 
+    @Test func toursCarryABrandAccentWhereTheWebDoes() {
+        // Every tour but secret-washington has an accent in the web's TOUR_ACCENTS / walk definitions.
+        let missing = catalog.tours.filter { $0.accentRGB == nil && $0.id != "secret-washington" }.map(\.id)
+        #expect(missing.isEmpty, "tours without a parseable accent: \(missing)")
+    }
+
     @Test func everyStopHasAudioKeysAndAName() {
         for tour in catalog.tours {
             #expect(!tour.title[.en].isEmpty, "\(tour.id) title")

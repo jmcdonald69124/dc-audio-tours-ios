@@ -3,62 +3,171 @@ import TourKit
 
 struct ToursView: View {
     @Environment(AppModel.self) private var model
-    @State private var query = ""
+    @State private var showAllAreas = false
+    @State private var showAllThemed = false
 
     var body: some View {
         @Bindable var model = model
 
         NavigationStack(path: $model.toursPath) {
-            ScrollView {
-                if let catalog = model.catalog {
-                    VStack(alignment: .leading, spacing: 28) {
-                        if let resume = model.resumeCandidate { ResumeCard(tour: resume.tour, stop: resume.stop) }
-                        section("Walk a neighborhood", tours: filtered(catalog.areaTours))
-                        section("Stories across the Metro", tours: filtered(catalog.themedTours))
+            ScrollViewReader { proxy in
+                ScrollView {
+                    if let catalog = model.catalog {
+                        VStack(alignment: .leading, spacing: 0) {
+                            HeroBand(onBrowse: { withAnimation { proxy.scrollTo("selector", anchor: .top) } },
+                                     onStartFree: { model.open(tourId: catalog.freeTourId) })
+                            selector(catalog).id("selector")
+                        }
+                    } else if let error = model.loadError {
+                        ContentUnavailableView("Couldn't load tours", systemImage: "exclamationmark.triangle", description: Text(error))
+                            .padding(.top, 120)
+                    } else {
+                        ProgressView().tint(Ed.accent).padding(.top, 160)
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom, 24)
-                } else if let error = model.loadError {
-                    ContentUnavailableView("Couldn't load tours", systemImage: "exclamationmark.triangle", description: Text(error))
-                        .padding(.top, 80)
-                } else {
-                    ProgressView().padding(.top, 120)
                 }
+                #if DEBUG
+                .task(id: model.catalog != nil) {
+                    guard model.catalog != nil, ProcessInfo.processInfo.arguments.contains("-scroll-selector") else { return }
+                    try? await Task.sleep(for: .seconds(1))
+                    proxy.scrollTo("selector", anchor: .top)
+                }
+                #endif
             }
-            .navigationTitle("DC Audio Tours")
-            .searchable(text: $query, prompt: "Search tours")
-            .toolbar { ToolbarItem(placement: .topBarTrailing) { LanguageMenu() } }
+            .background(Ed.bg.ignoresSafeArea())
+            .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: TourRoute.self) { TourDetailView(tourId: $0.id) }
             .navigationDestination(for: StopRoute.self) { StopView(route: $0) }
             .miniPlayerInset()
         }
     }
 
-    private func filtered(_ tours: [Tour]) -> [Tour] {
-        let q = query.trimmingCharacters(in: .whitespaces)
-        guard !q.isEmpty else { return tours }
-        return tours.filter {
-            $0.title[model.language].localizedCaseInsensitiveContains(q)
-                || $0.tagline[model.language].localizedCaseInsensitiveContains(q)
-                || $0.stops.contains { $0.name[model.language].localizedCaseInsensitiveContains(q) }
+    // MARK: Selector
+
+    private func selector(_ catalog: Catalog) -> some View {
+        let free = catalog.tour(id: catalog.freeTourId)
+        let areas = catalog.areaTours
+        let themed = catalog.themedTours.filter { $0.id != catalog.freeTourId }
+        let areaRows = showAllAreas ? areas : Array(areas.prefix(3))
+        let themedRows = showAllThemed ? themed : Array(themed.prefix(3))
+
+        return VStack(alignment: .leading, spacing: 40) {
+            if let free { FeaturedTour(tour: free) }
+
+            if let resume = model.resumeCandidate { ResumeCard(tour: resume.tour, stop: resume.stop) }
+
+            VStack(alignment: .leading, spacing: 12) {
+                Eyebrow("Start here", dot: Ed.accent)
+                Text("Choose a neighborhood or a story")
+                    .font(EdFont.serif(30, relativeTo: .title))
+                    .foregroundStyle(Ed.textStrong)
+                Text("Most visitors start with one walkable area or one themed story. You can always open the full catalog after that.")
+                    .font(.system(size: 15)).lineSpacing(3)
+                    .foregroundStyle(Ed.textMuted)
+            }
+
+            rows("Walk one area", tours: areaRows, indexed: false)
+            if areas.count > 3 {
+                Button(showAllAreas ? "Show fewer area walks" : "Show all \(areas.count) area walks") {
+                    withAnimation { showAllAreas.toggle() }
+                }
+                .buttonStyle(.ghost)
+                .padding(.top, -20)
+            }
+
+            rows("Pick a story", tours: themedRows, indexed: true)
+            if themed.count > 3 {
+                Button(showAllThemed ? "Show fewer themed tours" : "Show all \(themed.count) themed tours") {
+                    withAnimation { showAllThemed.toggle() }
+                }
+                .buttonStyle(.ghost)
+                .padding(.top, -20)
+            }
         }
+        .padding(.horizontal, 22)
+        .padding(.top, 36)
+        .padding(.bottom, 40)
     }
 
-    @ViewBuilder
-    private func section(_ title: LocalizedStringKey, tours: [Tour]) -> some View {
-        if !tours.isEmpty {
-            VStack(alignment: .leading, spacing: 12) {
-                Text(title).font(.display(.title2).weight(.semibold))
-                ForEach(tours) { tour in
-                    NavigationLink(value: TourRoute(id: tour.id)) { TourCard(tour: tour) }
-                        .buttonStyle(.plain)
+    private func rows(_ title: LocalizedStringKey, tours: [Tour], indexed: Bool) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Eyebrow(title).padding(.bottom, 14)
+            ForEach(Array(tours.enumerated()), id: \.element.id) { offset, tour in
+                NavigationLink(value: TourRoute(id: tour.id)) {
+                    EditorialRow(tour: tour, index: indexed ? offset + 2 : nil)
                 }
+                .buttonStyle(.plain)
             }
+            Hairline()
         }
     }
 }
 
-struct LanguageMenu: View {
+// MARK: - Hero band (always dark, like the web)
+
+private struct HeroBand: View {
+    let onBrowse: () -> Void
+    let onStartFree: () -> Void
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 22) {
+            HStack(alignment: .center) {
+                Eyebrow("Self-guided · 8 languages · first stop free", dot: Ed.heroAccent, onDark: true)
+                    .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 10)
+                HeroLanguageChip()
+            }
+
+            Text("Washington DC self-guided audio tours, walkable and accessible by Metro")
+                .font(EdFont.serif(40, relativeTo: .largeTitle))
+                .tracking(-0.8)
+                .lineSpacing(0)
+                .foregroundStyle(Ed.heroText)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text("Start at a Metro stop, listen as you walk, and explore museums, monuments, food halls, and hidden neighborhoods at your own pace.")
+                .font(.system(size: 16)).lineSpacing(4)
+                .foregroundStyle(Ed.heroMuted)
+
+            HStack(spacing: 12) {
+                Button(action: onStartFree) {
+                    Label("Start free", systemImage: "play.fill")
+                }
+                .buttonStyle(.editorial(fill: Ed.heroAccent, ink: Color(hex: 0x1A1714)))
+
+                Button("Browse all tours", action: onBrowse)
+                    .buttonStyle(.ghostOnDark)
+            }
+
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), alignment: .leading)], alignment: .leading, spacing: 8) {
+                check("Historic speeches")
+                check("Inside major venues")
+                check("Turn-by-turn Metro")
+            }
+        }
+        .padding(.horizontal, 22)
+        .padding(.top, 24)
+        .padding(.bottom, 48)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(alignment: .top) {
+            ZStack {
+                LinearGradient(colors: [Ed.heroBg, Ed.heroBg2], startPoint: .topLeading, endPoint: .bottomTrailing)
+                RadialGradient(colors: [Ed.heroAccent.opacity(0.18), .clear],
+                               center: UnitPoint(x: 0.88, y: 0.22), startRadius: 0, endRadius: 340)
+            }
+            .ignoresSafeArea(edges: .top)
+        }
+    }
+
+    private func check(_ text: LocalizedStringKey) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: "checkmark").font(.system(size: 12, weight: .bold)).foregroundStyle(Ed.heroAccent)
+            Text(text).font(.system(size: 13, weight: .medium)).foregroundStyle(Ed.heroDim)
+        }
+    }
+}
+
+private struct HeroLanguageChip: View {
     @Environment(AppModel.self) private var model
 
     var body: some View {
@@ -67,47 +176,90 @@ struct LanguageMenu: View {
                 ForEach(TourLanguage.allCases) { Text("\($0.flag)  \($0.nativeName)").tag($0) }
             }
         } label: {
-            Text(model.language.flag).font(.title3)
+            HStack(spacing: 6) {
+                Text(model.language.flag).font(.system(size: 17))
+                Text(model.language.nativeName).font(.system(size: 13, weight: .semibold))
+                Image(systemName: "chevron.down").font(.system(size: 9, weight: .bold)).opacity(0.7)
+            }
+            .foregroundStyle(Ed.heroText)
+            .padding(.horizontal, 12).frame(minHeight: 40)
+            .background(Ed.heroText.opacity(0.10), in: Capsule())
+            .overlay(Capsule().stroke(Ed.heroLine, lineWidth: 1))
         }
         .accessibilityLabel("Language")
     }
 }
 
-struct TourCard: View {
+// MARK: - Rows and cards
+
+/// Hairline-ruled index row — the web's `.ed-row`.
+struct EditorialRow: View {
+    let tour: Tour
+    let index: Int?
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        let progress = model.fraction(of: tour)
+
+        VStack(spacing: 0) {
+            Hairline()
+            HStack(spacing: 14) {
+                if let index {
+                    Text(String(format: "%02d", index))
+                        .font(EdFont.serifItalic(14)).foregroundStyle(Ed.textDim)
+                        .frame(width: 26, alignment: .leading)
+                }
+                Circle().fill(Theme.dot(for: tour)).frame(width: 12, height: 12)
+
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(tour.title[model.language])
+                        .font(EdFont.serif(22, relativeTo: .title3))
+                        .foregroundStyle(Ed.textStrong)
+                        .multilineTextAlignment(.leading)
+                    Text(tour.tagline[model.language])
+                        .font(.system(size: 14)).foregroundStyle(Ed.textMuted).lineLimit(1)
+                    if progress > 0 { ProgressView(value: progress).tint(Ed.accent).padding(.top, 2) }
+                }
+                Spacer(minLength: 8)
+                VStack(alignment: .trailing, spacing: 4) {
+                    AccessPill(access: model.access(to: tour))
+                    Text("\(tour.stops.count) stops").font(.system(size: 13)).foregroundStyle(Ed.textMuted)
+                }
+                Image(systemName: "arrow.right").font(.system(size: 15)).foregroundStyle(Ed.textMuted)
+            }
+            .padding(.vertical, 20)
+        }
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+    }
+}
+
+private struct FeaturedTour: View {
     let tour: Tour
     @Environment(AppModel.self) private var model
 
     var body: some View {
-        let color = Theme.color(for: tour)
-        let progress = model.fraction(of: tour)
-
-        HStack(spacing: 0) {
-            Rectangle().fill(color).frame(width: 6)
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(tour.title[model.language])
-                        .font(.display(.title3).weight(.semibold))
-                        .multilineTextAlignment(.leading)
-                    Spacer(minLength: 8)
-                    AccessPill(access: model.access(to: tour))
+        NavigationLink(value: TourRoute(id: tour.id)) {
+            VStack(alignment: .leading, spacing: 12) {
+                Eyebrow("Featured", dot: Theme.dot(for: tour))
+                Text(tour.title[model.language])
+                    .font(EdFont.serif(30, relativeTo: .title))
+                    .foregroundStyle(Ed.textStrong).multilineTextAlignment(.leading)
+                Text(tour.marketing?[model.language].isEmpty == false ? tour.marketing![model.language] : tour.tagline[model.language])
+                    .font(.system(size: 15)).lineSpacing(3)
+                    .foregroundStyle(Ed.textMuted).multilineTextAlignment(.leading)
+                HStack(spacing: 10) {
+                    Text("\(tour.stops.count) stops · first stop free")
+                        .font(.system(size: 13)).foregroundStyle(Ed.textMuted)
+                    Spacer()
+                    FreePill()
                 }
-                Text(tour.tagline[model.language])
-                    .font(.subheadline).foregroundStyle(.secondary)
-                    .multilineTextAlignment(.leading).lineLimit(2)
-                HStack(spacing: 14) {
-                    Label("\(tour.stops.count) stops", systemImage: "mappin.and.ellipse")
-                    if let route = tour.route {
-                        Label(Formatters.distance(Double(route.totalMeters)), systemImage: "figure.walk")
-                    }
-                }
-                .font(.caption).foregroundStyle(.secondary)
-                if progress > 0 { ProgressView(value: progress).tint(color) }
+                .padding(.top, 2)
             }
-            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .card(padding: 20)
         }
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
-        .accessibilityElement(children: .combine)
+        .buttonStyle(.plain)
     }
 }
 
@@ -119,14 +271,18 @@ struct ResumeCard: View {
     var body: some View {
         Button { model.open(tourId: tour.id, stopId: stop.id) } label: {
             HStack(spacing: 14) {
-                Image(systemName: "play.circle.fill").font(.system(size: 38)).foregroundStyle(Theme.color(for: tour))
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Continue").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
-                    Text(stop.name[model.language]).font(.headline).multilineTextAlignment(.leading)
-                    Text(tour.title[model.language]).font(.subheadline).foregroundStyle(.secondary)
+                Image(systemName: "play.fill")
+                    .font(.system(size: 15, weight: .bold)).foregroundStyle(Ed.onAccent)
+                    .frame(width: 40, height: 40).background(Ed.accent, in: Circle())
+                VStack(alignment: .leading, spacing: 3) {
+                    Eyebrow("Continue")
+                    Text(stop.name[model.language])
+                        .font(EdFont.serif(19, relativeTo: .headline)).foregroundStyle(Ed.textStrong)
+                        .multilineTextAlignment(.leading)
+                    Text(tour.title[model.language]).font(.system(size: 13)).foregroundStyle(Ed.textMuted)
                 }
                 Spacer()
-                Image(systemName: "chevron.right").foregroundStyle(.tertiary)
+                Image(systemName: "arrow.right").foregroundStyle(Ed.textMuted)
             }
             .card()
         }

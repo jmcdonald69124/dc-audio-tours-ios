@@ -15,7 +15,7 @@ struct WalkingRouteCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Label(title, systemImage: "figure.walk").font(.headline)
+            Label(title, systemImage: "figure.walk").font(EdFont.serif(18, relativeTo: .headline)).foregroundStyle(Ed.textStrong)
 
             if let leg {
                 HStack(spacing: 18) {
@@ -37,7 +37,7 @@ struct WalkingRouteCard: View {
                 }
             } else if failed {
                 Text("Walking directions aren't available right now.")
-                    .font(.subheadline).foregroundStyle(.secondary)
+                    .font(.subheadline).foregroundStyle(Ed.textMuted)
             } else {
                 ProgressView()
             }
@@ -47,8 +47,10 @@ struct WalkingRouteCard: View {
             } label: {
                 Label("Open in Apple Maps", systemImage: "map")
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.ghost)
         }
+        .foregroundStyle(Ed.text)
+        .tint(Ed.accent)
         .frame(maxWidth: .infinity, alignment: .leading)
         .card()
         .task(id: "\(from.lat),\(from.lon)>\(to.lat),\(to.lon)") { await load() }

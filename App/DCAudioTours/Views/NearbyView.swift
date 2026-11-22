@@ -43,7 +43,8 @@ struct NearbyView: View {
                             Button { model.open(stopId: entry.id) } label: {
                                 Image(systemName: "headphones.circle.fill")
                                     .font(.title)
-                                    .foregroundStyle(.white, Color.accentColor)
+                                    .symbolRenderingMode(.palette)
+                                    .foregroundStyle(Ed.onAccent, Ed.accent)
                             }
                             .accessibilityLabel(entry.name)
                         }
@@ -57,18 +58,22 @@ struct NearbyView: View {
                     Button { model.open(stopId: entry.id) } label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(entry.name).font(.headline)
-                                Text(entry.station).font(.caption).foregroundStyle(.secondary)
+                                Text(entry.name).font(EdFont.serif(18, relativeTo: .headline)).foregroundStyle(Ed.textStrong)
+                                Text(entry.station).font(.system(size: 12)).foregroundStyle(Ed.textMuted)
                             }
                             Spacer()
                             if let meters = entry.meters {
-                                Text(Formatters.distance(meters)).font(.subheadline).foregroundStyle(.secondary)
+                                Text(Formatters.distance(meters)).font(.system(size: 13)).foregroundStyle(Ed.textMuted)
                             }
                         }
                     }
-                    .tint(.primary)
+                    .listRowBackground(Ed.bg)
+                    .listRowSeparatorTint(Ed.border)
+                    .tint(Ed.textStrong)
                 }
                 .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .background(Ed.bg)
                 .frame(maxHeight: 260)
             }
             .navigationTitle("Nearby")

@@ -93,7 +93,34 @@ final class AppModel {
 
         if let catalog { SpotlightIndexer.index(catalog.tours, language: language) }
         if pendingResume { pendingResume = false; resumeTour() }
+        #if DEBUG
+        applyLaunchArguments()
+        #endif
     }
+
+    #if DEBUG
+    /// Deep links for screenshots/CI: -tab nearby|settings, -open-tour <id>, -open-stop <tourId>/<stopId>,
+    /// -lang <code>, -debug-unlock-all.
+    private func applyLaunchArguments() {
+        let args = ProcessInfo.processInfo.arguments
+        func value(_ key: String) -> String? {
+            guard let i = args.firstIndex(of: key), args.indices.contains(i + 1) else { return nil }
+            return args[i + 1]
+        }
+        if args.contains("-debug-unlock-all") { debugUnlockAll = true }
+        if let code = value("-lang"), let lang = TourLanguage(rawValue: code) { setLanguage(lang) }
+        switch value("-tab") {
+        case "nearby": selectedTab = .nearby
+        case "settings": selectedTab = .settings
+        default: break
+        }
+        if let id = value("-open-tour") { open(tourId: id) }
+        if let spec = value("-open-stop") {
+            let parts = spec.split(separator: "/").map(String.init)
+            if parts.count == 2 { open(tourId: parts[0], stopId: parts[1]) }
+        }
+    }
+    #endif
 
     private func loadContent() async {
         let lang = language
@@ -238,6 +265,12 @@ final class AppModel {
         selectedTab = .tours
         toursPath = NavigationPath()
         toursPath.append(TourRoute(id: tourId))
+        toursPath.append(StopRoute(tourId: tourId, stopId: stopId))
+    }
+
+    /// Prev/Next on a stop screen: swap the current stop instead of growing the back stack.
+    func replaceStop(tourId: String, stopId: String) {
+        if !toursPath.isEmpty { toursPath.removeLast() }
         toursPath.append(StopRoute(tourId: tourId, stopId: stopId))
     }
 

@@ -18,12 +18,13 @@ struct PlayerControls: View {
                     onEditingChanged: { editing in
                         if !editing, let target = dragging { audio.seek(to: target); dragging = nil }
                     })
+                .tint(Ed.accent)
                 HStack {
                     Text(Formatters.clock(shown))
                     Spacer()
                     Text("-" + Formatters.clock(max(audio.duration - shown, 0)))
                 }
-                .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                .font(.caption.monospacedDigit()).foregroundStyle(Ed.textMuted)
             }
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("Playback position")
@@ -33,7 +34,7 @@ struct PlayerControls: View {
             }
 
             HStack(spacing: 34) {
-                Button { audio.skip(by: -15) } label: { Image(systemName: "gobackward.15").font(.title2) }
+                Button { audio.skip(by: -15) } label: { Image(systemName: "gobackward.15").font(.title2).foregroundStyle(Ed.textStrong) }
                     .accessibilityLabel("Back 15 seconds")
 
                 Button { audio.toggle() } label: {
@@ -43,6 +44,8 @@ struct PlayerControls: View {
                         } else {
                             Image(systemName: audio.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .font(.system(size: 58))
+                                .symbolRenderingMode(.palette)
+                                .foregroundStyle(Ed.onAccent, Ed.accent)
                                 .contentTransition(.symbolEffect(.replace))
                         }
                     }
@@ -50,7 +53,7 @@ struct PlayerControls: View {
                 }
                 .accessibilityLabel(audio.isPlaying ? "Pause" : "Play")
 
-                Button { audio.skip(by: 15) } label: { Image(systemName: "goforward.15").font(.title2) }
+                Button { audio.skip(by: 15) } label: { Image(systemName: "goforward.15").font(.title2).foregroundStyle(Ed.textStrong) }
                     .accessibilityLabel("Forward 15 seconds")
             }
             .buttonStyle(.plain)
@@ -61,7 +64,10 @@ struct PlayerControls: View {
                     ForEach(AudioPlayerService.rates, id: \.self) { Text(Self.label($0)).tag($0) }
                 }
             } label: {
-                Label(Self.label(audio.rate), systemImage: "speedometer").font(.subheadline.weight(.medium))
+                Label(Self.label(audio.rate), systemImage: "speedometer")
+                    .font(.system(size: 13, weight: .medium)).foregroundStyle(Ed.textStrong)
+                    .padding(.horizontal, 16).padding(.vertical, 9)
+                    .overlay(Capsule().stroke(Ed.border, lineWidth: 1))
             }
             .accessibilityLabel("Playback speed")
         }
@@ -82,8 +88,8 @@ struct MiniPlayerBar: View {
             HStack(spacing: 12) {
                 Button { model.showFullPlayer = true } label: {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(item.title).font(.subheadline.weight(.semibold)).lineLimit(1)
-                        Text(item.subtitle).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                        Text(item.title).font(EdFont.serif(16, relativeTo: .subheadline)).foregroundStyle(Ed.textStrong).lineLimit(1)
+                        Text(item.subtitle).font(.system(size: 12)).foregroundStyle(Ed.textMuted).lineLimit(1)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
@@ -93,7 +99,7 @@ struct MiniPlayerBar: View {
 
                 Button { audio.toggle() } label: {
                     Image(systemName: audio.isPlaying ? "pause.fill" : "play.fill")
-                        .font(.title3)
+                        .font(.title3).foregroundStyle(Ed.accent)
                         .frame(width: 44, height: 44)
                         .contentTransition(.symbolEffect(.replace))
                 }
@@ -101,10 +107,12 @@ struct MiniPlayerBar: View {
                 .accessibilityLabel(audio.isPlaying ? "Pause" : "Play")
             }
             .padding(.leading, 16).padding(.trailing, 6).padding(.vertical, 6)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .background(Ed.surface, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Ed.border, lineWidth: 1))
             .overlay(alignment: .bottom) {
                 ProgressView(value: audio.duration > 0 ? min(audio.position / audio.duration, 1) : 0)
                     .progressViewStyle(.linear)
+                    .tint(Ed.accent)
                     .padding(.horizontal, 16)
                     .offset(y: 4)
                     .allowsHitTesting(false)
@@ -123,8 +131,8 @@ struct FullPlayerView: View {
         VStack(spacing: 28) {
             if let item = model.audio.nowPlaying {
                 VStack(spacing: 6) {
-                    Text(item.title).font(.display(.title).weight(.semibold)).multilineTextAlignment(.center)
-                    Text(item.subtitle).font(.subheadline).foregroundStyle(.secondary)
+                    Text(item.title).font(EdFont.serif(28, relativeTo: .title)).foregroundStyle(Ed.textStrong).multilineTextAlignment(.center)
+                    Text(item.subtitle).font(.system(size: 14)).foregroundStyle(Ed.textMuted)
                 }
                 .padding(.top, 24)
 
@@ -138,7 +146,7 @@ struct FullPlayerView: View {
                         Label("Next stop", systemImage: "forward.end.fill").frame(maxWidth: .infinity)
                     }
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.ghost)
                 .disabled(model.nowPlayingRoute == nil)
 
                 if let route = model.nowPlayingRoute {
@@ -153,5 +161,8 @@ struct FullPlayerView: View {
             }
         }
         .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Ed.bg.ignoresSafeArea())
+        .tint(Ed.accent)
     }
 }

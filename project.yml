@@ -59,6 +59,12 @@ targets:
         # Narration keeps playing with the screen locked or the app in the background.
         UIBackgroundModes:
           - audio
+        # Playfair Display (SIL OFL) — the web app's serif.
+        UIAppFonts:
+          - PlayfairDisplay-Medium.ttf
+          - PlayfairDisplay-SemiBold.ttf
+          - PlayfairDisplay-Italic.ttf
+          - PlayfairDisplay-MediumItalic.ttf
         NSLocationWhenInUseUsageDescription: "DC Audio Tours shows where you are on the walk and tells you when you reach the next stop."
         NSLocationAlwaysAndWhenInUseUsageDescription: "Allow location in the background so your phone can tell you when you arrive at the next stop, even with the screen off."
         ITSAppUsesNonExemptEncryption: false

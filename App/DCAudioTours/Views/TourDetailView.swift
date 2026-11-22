@@ -16,55 +16,96 @@ struct TourDetailView: View {
 
     private func content(_ tour: Tour) -> some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 22) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(tour.tagline[model.language])
-                        .font(.display(.title3)).foregroundStyle(.secondary)
-                    if let marketing = tour.marketing?[model.language], !marketing.isEmpty {
-                        Text(marketing).font(.body).foregroundStyle(.secondary)
-                    }
-                }
-
-                startButton(tour)
-
-                TourMapView(tour: tour)
-                    .frame(height: 260)
-                    .clipShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
-
-                if let route = tour.route { RouteSummary(route: route) }
-
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Stops").font(.display(.title2).weight(.semibold)).padding(.bottom, 8)
-                    ForEach(tour.stops) { stop in
-                        NavigationLink(value: StopRoute(tourId: tour.id, stopId: stop.id)) {
-                            StopRow(tour: tour, stop: stop)
-                        }
-                        .buttonStyle(.plain)
-                        Divider()
-                    }
-                }
+            VStack(alignment: .leading, spacing: 0) {
+                header(tour)
+                overview(tour)
+                timeline(tour)
             }
-            .padding(.horizontal)
-            .padding(.bottom, 24)
         }
+        .background(Ed.bg.ignoresSafeArea())
         .navigationTitle(tour.title[model.language])
         .navigationBarTitleDisplayMode(.inline)
+        .tint(Ed.accent)
         .miniPlayerInset()
     }
 
-    private func startButton(_ tour: Tour) -> some View {
-        let next = model.nextStop(for: tour)
+    // MARK: Header — serif standfirst, meta line, CTA
+
+    private func header(_ tour: Tour) -> some View {
         let started = model.fraction(of: tour) > 0
-        return Button {
-            model.startTour(tour)
-            if let next { model.toursPath.append(StopRoute(tourId: tour.id, stopId: next.id)) }
-        } label: {
-            Label(started ? "Continue tour" : "Start tour", systemImage: "play.fill")
-                .font(.headline).frame(maxWidth: .infinity)
+        let next = model.nextStop(for: tour)
+
+        return VStack(alignment: .leading, spacing: 20) {
+            Text(tour.marketing?[model.language].isEmpty == false ? tour.marketing![model.language] : tour.tagline[model.language])
+                .font(EdFont.serif(26, relativeTo: .title2))
+                .lineSpacing(5)
+                .foregroundStyle(Ed.textStrong)
+
+            HStack(spacing: 9) {
+                Circle().fill(Ed.accent).frame(width: 6, height: 6)
+                Text(metaLine(tour)).font(.system(size: 15)).foregroundStyle(Ed.textMuted)
+            }
+
+            Button {
+                model.startTour(tour)
+                if let next { model.toursPath.append(StopRoute(tourId: tour.id, stopId: next.id)) }
+            } label: {
+                Label(started ? "Continue tour" : "Start tour", systemImage: "play.fill")
+            }
+            .buttonStyle(.editorial)
         }
-        .buttonStyle(.borderedProminent)
-        .controlSize(.large)
-        .tint(Theme.color(for: tour))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 22)
+        .padding(.top, 28)
+        .padding(.bottom, 32)
+    }
+
+    private func metaLine(_ tour: Tour) -> String {
+        let stops = "\(tour.stops.count) stops"
+        if let route = tour.route {
+            return "\(stops) · \(Formatters.distance(Double(route.totalMeters))) on foot"
+        }
+        return tour.isFree ? "\(stops) · free" : "\(stops) · first stop free"
+    }
+
+    // MARK: Stop overview — map on a tinted band
+
+    private func overview(_ tour: Tour) -> some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Eyebrow("Stop overview")
+            Text(tour.kind == .area ? "Every stop, in walking order." : "Every stop, in tour order — route paths are approximate.")
+                .font(.system(size: 15)).foregroundStyle(Ed.textMuted)
+
+            TourMapView(tour: tour)
+                .frame(height: 280)
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Ed.border, lineWidth: 1))
+
+            if let route = tour.route { RouteSummary(route: route) }
+        }
+        .padding(.horizontal, 22)
+        .padding(.vertical, 28)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Ed.surfaceAlt)
+        .overlay(alignment: .top) { Hairline() }
+        .overlay(alignment: .bottom) { Hairline() }
+    }
+
+    // MARK: Timeline
+
+    private func timeline(_ tour: Tour) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(tour.stops) { stop in
+                NavigationLink(value: StopRoute(tourId: tour.id, stopId: stop.id)) {
+                    StopRow(tour: tour, stop: stop)
+                }
+                .buttonStyle(.plain)
+                Hairline()
+            }
+        }
+        .padding(.horizontal, 22)
+        .padding(.vertical, 8)
+        .padding(.bottom, 24)
     }
 }
 
@@ -84,15 +125,17 @@ private struct RouteSummary: View {
                 systemImage: "point.topleft.down.to.point.bottomright.curvepath")
             if route.metricsEstimated {
                 Text("Walking times are estimates; each stop shows a live route from Apple Maps.")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(.footnote).foregroundStyle(Ed.textDim)
             }
         }
-        .font(.subheadline)
+        .font(.system(size: 14))
+        .foregroundStyle(Ed.text)
         .frame(maxWidth: .infinity, alignment: .leading)
         .card()
     }
 }
 
+/// A stop on the walking timeline: numbered in the line colour, serif name, station + line badges.
 struct StopRow: View {
     let tour: Tour
     let stop: Stop
@@ -101,31 +144,35 @@ struct StopRow: View {
     var body: some View {
         let access = model.access(to: stop)
         let done = model.tourProgress(tour)?.completedStopIds.contains(stop.id) == true
-        let color = Theme.color(for: tour)
+        let line = stop.lines.first
 
         HStack(spacing: 14) {
             Text("\(stop.order + 1)")
-                .font(.system(.subheadline, design: .rounded).weight(.bold))
-                .frame(width: 34, height: 34)
-                .foregroundStyle(.white)
-                .background(color, in: Circle())
-            VStack(alignment: .leading, spacing: 3) {
-                Text(stop.name[model.language]).font(.headline).multilineTextAlignment(.leading)
-                HStack(spacing: 6) {
-                    LineStack(lines: stop.lines)
-                    Text(stop.station).font(.caption).foregroundStyle(.secondary)
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .foregroundStyle(line.map(Theme.ink(on:)) ?? .white)
+                .frame(width: 36, height: 36)
+                .background(line.map(Theme.color) ?? Ed.accent, in: Circle())
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text(stop.name[model.language])
+                    .font(EdFont.serif(20, relativeTo: .headline))
+                    .foregroundStyle(Ed.textStrong).multilineTextAlignment(.leading)
+                HStack(spacing: 7) {
+                    LineStack(lines: stop.lines, size: 18)
+                    Text(stop.station).font(.system(size: 13)).foregroundStyle(Ed.textMuted)
                 }
             }
             Spacer(minLength: 8)
             if done {
-                Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+                Image(systemName: "checkmark.circle.fill").foregroundStyle(Ed.success)
+            } else if access == .freePreview || access == .freeTour {
+                FreePill()
             } else if !access.isUnlocked {
-                Image(systemName: "lock.fill").foregroundStyle(.tertiary)
-            } else {
-                Image(systemName: "chevron.right").font(.footnote).foregroundStyle(.tertiary)
+                Image(systemName: "lock.fill").font(.system(size: 14)).foregroundStyle(Ed.textDim)
             }
+            Image(systemName: "arrow.right").font(.system(size: 14)).foregroundStyle(Ed.textMuted)
         }
-        .padding(.vertical, 10)
+        .padding(.vertical, 16)
         .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
     }

@@ -15,10 +15,11 @@ struct RootView: View {
                 .tabItem { Label("Nearby", systemImage: "location.viewfinder") }
                 .tag(AppTab.nearby)
             SettingsView()
-                .tabItem { Label("Settings", systemImage: "gearshape") }
+                .tabItem { Label("More", systemImage: "ellipsis") }
                 .tag(AppTab.settings)
         }
         // Text("…") literals follow the language chosen in the app, not only the system language.
+        .tint(Ed.accent)
         .environment(\.locale, Locale(identifier: model.language.localeIdentifier))
         .sheet(isPresented: $model.showFullPlayer) {
             FullPlayerView()
