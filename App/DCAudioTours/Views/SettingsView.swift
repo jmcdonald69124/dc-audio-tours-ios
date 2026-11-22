@@ -48,7 +48,9 @@ struct SettingsView: View {
                 #endif
             }
             .navigationTitle("More")
+            .navigationBarTitleDisplayMode(.inline)
             .scrollContentBackground(.hidden)
+            .listRowBackground(Ed.surface)
             .background(Ed.bg.ignoresSafeArea())
             .tint(Ed.accent)
             .miniPlayerInset()

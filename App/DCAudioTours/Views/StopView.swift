@@ -60,7 +60,6 @@ private struct StopContentView: View {
         .toolbarBackground(Ed.heroBg, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbar { ToolbarItem(placement: .topBarTrailing) { LineStack(lines: stop.lines, size: 28) } }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack(spacing: 0) {
                 MiniPlayerBar()
@@ -73,7 +72,11 @@ private struct StopContentView: View {
 
     private func hero(lineColor: Color) -> some View {
         VStack(alignment: .leading, spacing: 18) {
-            Eyebrow("Stop \(stop.order + 1) of \(tour.stops.count)", dot: lineColor, onDark: true)
+            HStack(alignment: .center) {
+                Eyebrow("Stop \(stop.order + 1) of \(tour.stops.count)", dot: lineColor, onDark: true)
+                Spacer()
+                LineStack(lines: stop.lines, size: 30)
+            }
 
             Text(stop.name[model.language])
                 .font(EdFont.serif(38, relativeTo: .largeTitle))

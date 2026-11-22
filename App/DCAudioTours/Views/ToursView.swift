@@ -34,7 +34,11 @@ struct ToursView: View {
                 #endif
             }
             .background(Ed.bg.ignoresSafeArea())
-            .toolbar(.hidden, for: .navigationBar)
+            // Dark, empty top bar so the status bar sits on the same dark band as the hero (white clock).
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Ed.heroBg, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
             .navigationDestination(for: TourRoute.self) { TourDetailView(tourId: $0.id) }
             .navigationDestination(for: StopRoute.self) { StopView(route: $0) }
             .miniPlayerInset()
@@ -111,12 +115,10 @@ private struct HeroBand: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
-            HStack(alignment: .center) {
-                Eyebrow("Self-guided · 8 languages · first stop free", dot: Ed.heroAccent, onDark: true)
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer(minLength: 10)
-                HeroLanguageChip()
-            }
+            HStack { Spacer(); HeroLanguageChip() }
+            Eyebrow("Self-guided · 8 languages · first stop free", dot: Ed.heroAccent, onDark: true)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.top, -6)
 
             Text("Washington DC self-guided audio tours, walkable and accessible by Metro")
                 .font(EdFont.serif(40, relativeTo: .largeTitle))
@@ -146,7 +148,7 @@ private struct HeroBand: View {
             }
         }
         .padding(.horizontal, 22)
-        .padding(.top, 24)
+        .padding(.top, 12)
         .padding(.bottom, 48)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(alignment: .top) {
@@ -245,6 +247,7 @@ private struct FeaturedTour: View {
                 Text(tour.title[model.language])
                     .font(EdFont.serif(30, relativeTo: .title))
                     .foregroundStyle(Ed.textStrong).multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(tour.marketing?[model.language].isEmpty == false ? tour.marketing![model.language] : tour.tagline[model.language])
                     .font(.system(size: 15)).lineSpacing(3)
                     .foregroundStyle(Ed.textMuted).multilineTextAlignment(.leading)

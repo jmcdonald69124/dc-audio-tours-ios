@@ -23,6 +23,9 @@ struct NearbyView: View {
             for stop in tour.stops where !seen.contains(stop.id) {
                 guard let location = stop.location else { continue }
                 seen.insert(stop.id)
+                // Several stop ids can sit on one point (the same place told in different tours): list it once.
+                let spot = String(format: "%.4f,%.4f", location.lat, location.lon)
+                guard seen.insert(spot).inserted else { continue }
                 result.append(Entry(
                     id: stop.id, name: stop.name[model.language], station: stop.station,
                     coordinate: location.coordinate, meters: model.location.coordinate.map { $0.distance(to: location.coordinate) }))
