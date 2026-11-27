@@ -252,7 +252,7 @@ final class AppModel {
         guard let tour = activeTourId.flatMap(tour(id:)),
               let stop = tour.stops.first(where: { $0.id == stopId }) else { return }
         Haptics.arrival()
-        ArrivalNotifications.post(stopName: stop.name[language], tourTitle: tour.title[language], tourId: tour.id, stopId: stop.id)
+        ArrivalNotifications.post(stopName: stop.name[language], tourTitle: tour.title[language], tourId: tour.id, stopId: stop.id, language: language)
         if access(to: stop).isUnlocked, audio.nowPlaying == nil || !audio.isPlaying {
             // Don't talk over the listener: offer the stop, they tap to listen.
             open(tourId: tour.id, stopId: stop.id)

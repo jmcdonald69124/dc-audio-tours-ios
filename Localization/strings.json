@@ -1,0 +1,891 @@
+{
+ "languages": [
+  "en",
+  "es",
+  "fr",
+  "de",
+  "ja",
+  "ko",
+  "zh-Hans",
+  "pt-BR"
+ ],
+ "strings": {
+  "%@ of %@": {
+   "es": "%1$@ de %2$@",
+   "fr": "%1$@ sur %2$@",
+   "de": "%1$@ von %2$@",
+   "ja": "%2$@中 %1$@",
+   "ko": "%2$@ 중 %1$@",
+   "zh-Hans": "共 %2$@，已播放 %1$@",
+   "pt-BR": "%1$@ de %2$@"
+  },
+  "%@ · about %@": {
+   "es": "%1$@ · unos %2$@",
+   "fr": "%1$@ · environ %2$@",
+   "de": "%1$@ · etwa %2$@",
+   "ja": "%1$@ · 約%2$@",
+   "ko": "%1$@ · 약 %2$@",
+   "zh-Hans": "%1$@ · 约 %2$@",
+   "pt-BR": "%1$@ · cerca de %2$@"
+  },
+  "%lld min walk from station": {
+   "es": "%lld min a pie desde la estación",
+   "fr": "%lld min à pied depuis la station",
+   "de": "%lld Min. Fußweg von der Station",
+   "ja": "駅から徒歩%lld分",
+   "ko": "역에서 도보 %lld분",
+   "zh-Hans": "距车站步行%lld分钟",
+   "pt-BR": "%lld min a pé da estação"
+  },
+  "%lld stops": {
+   "es": "%lld paradas",
+   "fr": "%lld arrêts",
+   "de": "%lld Stopps",
+   "ja": "%lldストップ",
+   "ko": "%lld개 정류장",
+   "zh-Hans": "%lld 站",
+   "pt-BR": "%lld paradas"
+  },
+  "%lld stops · %@ on foot": {
+   "es": "%1$lld paradas · %2$@ a pie",
+   "fr": "%1$lld arrêts · %2$@ à pied",
+   "de": "%1$lld Stopps · %2$@ zu Fuß",
+   "ja": "%1$lldストップ · 徒歩 %2$@",
+   "ko": "정류장 %1$lld개 · 도보 %2$@",
+   "zh-Hans": "%1$lld 站 · 步行 %2$@",
+   "pt-BR": "%1$lld paradas · %2$@ a pé"
+  },
+  "%lld stops · first stop free": {
+   "es": "%lld paradas · primera parada gratis",
+   "fr": "%lld arrêts · premier arrêt gratuit",
+   "de": "%lld Stopps · erster Stopp gratis",
+   "ja": "%lldストップ · 最初のストップは無料",
+   "ko": "%lld개 정류장 · 첫 정류장 무료",
+   "zh-Hans": "%lld 站 · 首站免费",
+   "pt-BR": "%lld paradas · primeira parada grátis"
+  },
+  "%lld stops · free": {
+   "es": "%lld paradas · gratis",
+   "fr": "%lld arrêts · gratuit",
+   "de": "%lld Stopps · kostenlos",
+   "ja": "%lldストップ · 無料",
+   "ko": "정류장 %lld개 · 무료",
+   "zh-Hans": "%lld 站 · 免费",
+   "pt-BR": "%lld paradas · grátis"
+  },
+  "About": {
+   "es": "Acerca de",
+   "fr": "À propos",
+   "de": "Info",
+   "ja": "情報",
+   "ko": "정보",
+   "zh-Hans": "关于",
+   "pt-BR": "Sobre"
+  },
+  "About this": {
+   "es": "Sobre esto",
+   "fr": "À propos",
+   "de": "Mehr dazu",
+   "ja": "詳細",
+   "ko": "자세히",
+   "zh-Hans": "关于此处",
+   "pt-BR": "Sobre isto"
+  },
+  "Allow alerts while walking": {
+   "es": "Permitir avisos al caminar",
+   "fr": "Autoriser les alertes pendant la marche",
+   "de": "Hinweise beim Gehen erlauben",
+   "ja": "歩行中の通知を許可",
+   "ko": "걷는 동안 알림 허용",
+   "zh-Hans": "允许步行时提醒",
+   "pt-BR": "Permitir alertas durante a caminhada"
+  },
+  "Always": {
+   "es": "Siempre",
+   "fr": "Toujours",
+   "de": "Immer",
+   "ja": "常に",
+   "ko": "항상",
+   "zh-Hans": "始终",
+   "pt-BR": "Sempre"
+  },
+  "Arrival alerts": {
+   "es": "Avisos de llegada",
+   "fr": "Alertes d’arrivée",
+   "de": "Ankunftshinweise",
+   "ja": "到着通知",
+   "ko": "도착 알림",
+   "zh-Hans": "到达提醒",
+   "pt-BR": "Alertas de chegada"
+  },
+  "Audio isn't available for this stop yet.": {
+   "es": "El audio de esta parada aún no está disponible.",
+   "fr": "L’audio de cet arrêt n’est pas encore disponible.",
+   "de": "Das Audio für diesen Stopp ist noch nicht verfügbar.",
+   "ja": "このストップの音声はまだ利用できません。",
+   "ko": "이 정류장의 오디오는 아직 제공되지 않습니다.",
+   "zh-Hans": "此站音频暂未上线。",
+   "pt-BR": "O áudio desta parada ainda não está disponível."
+  },
+  "Back 15 seconds": {
+   "es": "Retroceder 15 segundos",
+   "fr": "Reculer de 15 secondes",
+   "de": "15 Sekunden zurück",
+   "ja": "15秒戻る",
+   "ko": "15초 뒤로",
+   "zh-Hans": "后退15秒",
+   "pt-BR": "Voltar 15 segundos"
+  },
+  "Blue Line": {
+   "es": "Línea Azul",
+   "fr": "Ligne bleue",
+   "de": "Blaue Linie",
+   "ja": "ブルーライン",
+   "ko": "블루 라인",
+   "zh-Hans": "蓝线",
+   "pt-BR": "Linha Azul"
+  },
+  "Browse all tours": {
+   "es": "Ver todos los tours",
+   "fr": "Parcourir toutes les visites",
+   "de": "Alle Touren ansehen",
+   "ja": "すべてのツアーを見る",
+   "ko": "모든 투어 둘러보기",
+   "zh-Hans": "浏览全部导览",
+   "pt-BR": "Ver todos os tours"
+  },
+  "Choose a neighborhood or a story": {
+   "es": "Elige un barrio o una historia",
+   "fr": "Choisissez un quartier ou une histoire",
+   "de": "Wählen Sie ein Viertel oder eine Geschichte",
+   "ja": "エリアかストーリーを選ぶ",
+   "ko": "동네 또는 이야기를 선택하세요",
+   "zh-Hans": "选择一个街区或一个故事",
+   "pt-BR": "Escolha um bairro ou uma história"
+  },
+  "Continue": {
+   "es": "Continuar",
+   "fr": "Continuer",
+   "de": "Weiter",
+   "ja": "続ける",
+   "ko": "계속",
+   "zh-Hans": "继续",
+   "pt-BR": "Continuar"
+  },
+  "Continue tour": {
+   "es": "Continuar tour",
+   "fr": "Reprendre la visite",
+   "de": "Tour fortsetzen",
+   "ja": "ツアーを続ける",
+   "ko": "투어 이어가기",
+   "zh-Hans": "继续导览",
+   "pt-BR": "Continuar tour"
+  },
+  "Couldn't load tours": {
+   "es": "No se pudieron cargar los tours",
+   "fr": "Impossible de charger les visites",
+   "de": "Touren konnten nicht geladen werden",
+   "ja": "ツアーを読み込めませんでした",
+   "ko": "투어를 불러오지 못했습니다",
+   "zh-Hans": "无法加载导览",
+   "pt-BR": "Não foi possível carregar os tours"
+  },
+  "Directions": {
+   "es": "Cómo llegar",
+   "fr": "Itinéraire",
+   "de": "Wegbeschreibung",
+   "ja": "道順",
+   "ko": "길 안내",
+   "zh-Hans": "路线",
+   "pt-BR": "Como chegar"
+  },
+  "Every stop, in tour order — route paths are approximate.": {
+   "es": "Todas las paradas, en orden del tour; los trayectos son aproximados.",
+   "fr": "Tous les arrêts, dans l’ordre de la visite ; les tracés sont approximatifs.",
+   "de": "Alle Stopps in Tourreihenfolge – die Routenverläufe sind ungefähr.",
+   "ja": "すべてのストップをツアー順に表示。ルートは目安です。",
+   "ko": "모든 정류장을 투어 순서대로 표시하며, 경로는 대략적입니다.",
+   "zh-Hans": "所有站点按导览顺序排列；路线仅供参考。",
+   "pt-BR": "Todas as paradas, na ordem do tour; os trajetos são aproximados."
+  },
+  "Every stop, in walking order.": {
+   "es": "Todas las paradas, en orden de recorrido.",
+   "fr": "Tous les arrêts, dans l’ordre de la marche.",
+   "de": "Alle Stopps in Gehreihenfolge.",
+   "ja": "すべてのストップを歩く順に表示。",
+   "ko": "모든 정류장을 걷는 순서대로.",
+   "zh-Hans": "所有站点，按步行顺序排列。",
+   "pt-BR": "Todas as paradas, na ordem do percurso."
+  },
+  "Exit: %@": {
+   "es": "Salida: %@",
+   "fr": "Sortie : %@",
+   "de": "Ausgang: %@",
+   "ja": "出口：%@",
+   "ko": "출구: %@",
+   "zh-Hans": "出口：%@",
+   "pt-BR": "Saída: %@"
+  },
+  "FREE": {
+   "es": "GRATIS",
+   "fr": "GRATUIT",
+   "de": "GRATIS",
+   "ja": "無料",
+   "ko": "무료",
+   "zh-Hans": "免费",
+   "pt-BR": "GRÁTIS"
+  },
+  "Featured": {
+   "es": "Destacado",
+   "fr": "À la une",
+   "de": "Empfohlen",
+   "ja": "注目",
+   "ko": "추천",
+   "zh-Hans": "精选",
+   "pt-BR": "Destaque"
+  },
+  "Forward 15 seconds": {
+   "es": "Avanzar 15 segundos",
+   "fr": "Avancer de 15 secondes",
+   "de": "15 Sekunden vor",
+   "ja": "15秒進む",
+   "ko": "15초 앞으로",
+   "zh-Hans": "快进15秒",
+   "pt-BR": "Avançar 15 segundos"
+  },
+  "Free": {
+   "es": "Gratis",
+   "fr": "Gratuit",
+   "de": "Gratis",
+   "ja": "無料",
+   "ko": "무료",
+   "zh-Hans": "免费",
+   "pt-BR": "Grátis"
+  },
+  "From %@ station": {
+   "es": "Desde la estación %@",
+   "fr": "Depuis la station %@",
+   "de": "Von der Station %@",
+   "ja": "%@駅から",
+   "ko": "%@역에서",
+   "zh-Hans": "从%@站出发",
+   "pt-BR": "Da estação %@"
+  },
+  "Good to know": {
+   "es": "Bueno saber",
+   "fr": "Bon à savoir",
+   "de": "Gut zu wissen",
+   "ja": "知っておくと便利",
+   "ko": "알아두면 좋아요",
+   "zh-Hans": "实用提示",
+   "pt-BR": "Bom saber"
+  },
+  "Green Line": {
+   "es": "Línea Verde",
+   "fr": "Ligne verte",
+   "de": "Grüne Linie",
+   "ja": "グリーンライン",
+   "ko": "그린 라인",
+   "zh-Hans": "绿线",
+   "pt-BR": "Linha Verde"
+  },
+  "Help & FAQ": {
+   "es": "Ayuda y preguntas frecuentes",
+   "fr": "Aide et FAQ",
+   "de": "Hilfe & FAQ",
+   "ja": "ヘルプ＆FAQ",
+   "ko": "도움말 및 FAQ",
+   "zh-Hans": "帮助与常见问题",
+   "pt-BR": "Ajuda e perguntas frequentes"
+  },
+  "Historic speeches": {
+   "es": "Discursos históricos",
+   "fr": "Discours historiques",
+   "de": "Historische Reden",
+   "ja": "歴史的な演説",
+   "ko": "역사적 연설",
+   "zh-Hans": "历史演讲",
+   "pt-BR": "Discursos históricos"
+  },
+  "Inside": {
+   "es": "Dentro",
+   "fr": "À l’intérieur",
+   "de": "Im Inneren",
+   "ja": "館内",
+   "ko": "내부",
+   "zh-Hans": "内部",
+   "pt-BR": "Por dentro"
+  },
+  "Inside major venues": {
+   "es": "Dentro de grandes lugares",
+   "fr": "À l’intérieur des grands lieux",
+   "de": "In großen Sehenswürdigkeiten",
+   "ja": "主要施設の内部",
+   "ko": "주요 명소 내부",
+   "zh-Hans": "走进主要场馆",
+   "pt-BR": "Dentro de grandes locais"
+  },
+  "Language": {
+   "es": "Idioma",
+   "fr": "Langue",
+   "de": "Sprache",
+   "ja": "言語",
+   "ko": "언어",
+   "zh-Hans": "语言",
+   "pt-BR": "Idioma"
+  },
+  "Listen": {
+   "es": "Escuchar",
+   "fr": "Écouter",
+   "de": "Anhören",
+   "ja": "聴く",
+   "ko": "듣기",
+   "zh-Hans": "收听",
+   "pt-BR": "Ouvir"
+  },
+  "Location": {
+   "es": "Ubicación",
+   "fr": "Localisation",
+   "de": "Standort",
+   "ja": "位置情報",
+   "ko": "위치",
+   "zh-Hans": "位置",
+   "pt-BR": "Localização"
+  },
+  "More": {
+   "es": "Más",
+   "fr": "Plus",
+   "de": "Mehr",
+   "ja": "もっと",
+   "ko": "더보기",
+   "zh-Hans": "更多",
+   "pt-BR": "Mais"
+  },
+  "Most visitors start with one walkable area or one themed story. You can always open the full catalog after that.": {
+   "es": "La mayoría de los visitantes empieza con una zona para recorrer a pie o con una historia temática. Después siempre puedes abrir el catálogo completo.",
+   "fr": "La plupart des visiteurs commencent par un quartier à parcourir à pied ou par une histoire thématique. Vous pourrez ensuite ouvrir tout le catalogue.",
+   "de": "Die meisten Besucher beginnen mit einem Viertel zu Fuß oder mit einer Themen-Geschichte. Danach können Sie jederzeit den gesamten Katalog öffnen.",
+   "ja": "多くの方は、歩いて回れる1つのエリアか、1つのテーマ別ストーリーから始めます。そのあとで全カタログをいつでも開けます。",
+   "ko": "대부분의 방문객은 걸어서 둘러볼 수 있는 한 지역이나 하나의 테마 이야기로 시작합니다. 그 후에 전체 카탈로그를 언제든 열어볼 수 있습니다.",
+   "zh-Hans": "大多数游客会从一个适合步行的街区或一个主题故事开始。之后您随时可以打开完整目录。",
+   "pt-BR": "A maioria dos visitantes começa com uma região para explorar a pé ou com uma história temática. Depois, você pode abrir o catálogo completo quando quiser."
+  },
+  "Nearby": {
+   "es": "Cerca",
+   "fr": "À proximité",
+   "de": "In der Nähe",
+   "ja": "近く",
+   "ko": "주변",
+   "zh-Hans": "附近",
+   "pt-BR": "Por perto"
+  },
+  "Next": {
+   "es": "Siguiente",
+   "fr": "Suivant",
+   "de": "Weiter",
+   "ja": "次へ",
+   "ko": "다음",
+   "zh-Hans": "下一个",
+   "pt-BR": "Próximo"
+  },
+  "Next stop": {
+   "es": "Siguiente parada",
+   "fr": "Arrêt suivant",
+   "de": "Nächster Stopp",
+   "ja": "次のストップ",
+   "ko": "다음 정류장",
+   "zh-Hans": "下一站",
+   "pt-BR": "Próxima parada"
+  },
+  "Next: %@": {
+   "es": "Siguiente: %@",
+   "fr": "Suivant : %@",
+   "de": "Weiter: %@",
+   "ja": "次: %@",
+   "ko": "다음: %@",
+   "zh-Hans": "下一站：%@",
+   "pt-BR": "Próxima: %@"
+  },
+  "No audio is available for this stop.": {
+   "es": "No hay audio disponible para esta parada.",
+   "fr": "Aucun audio n’est disponible pour cet arrêt.",
+   "de": "Für diesen Stopp ist kein Audio verfügbar.",
+   "ja": "このストップの音声はありません。",
+   "ko": "이 정류장의 오디오가 없습니다.",
+   "zh-Hans": "此站暂无音频。",
+   "pt-BR": "Não há áudio disponível para esta parada."
+  },
+  "Not set": {
+   "es": "Sin definir",
+   "fr": "Non défini",
+   "de": "Nicht festgelegt",
+   "ja": "未設定",
+   "ko": "설정 안 됨",
+   "zh-Hans": "未设置",
+   "pt-BR": "Não definido"
+  },
+  "Nothing playing": {
+   "es": "No hay nada reproduciéndose",
+   "fr": "Aucune lecture en cours",
+   "de": "Keine Wiedergabe",
+   "ja": "再生中のものはありません",
+   "ko": "재생 중인 항목 없음",
+   "zh-Hans": "暂无播放内容",
+   "pt-BR": "Nada em reprodução"
+  },
+  "Off": {
+   "es": "Desactivado",
+   "fr": "Désactivé",
+   "de": "Aus",
+   "ja": "オフ",
+   "ko": "꺼짐",
+   "zh-Hans": "关闭",
+   "pt-BR": "Desativado"
+  },
+  "Open Settings": {
+   "es": "Abrir Ajustes",
+   "fr": "Ouvrir les Réglages",
+   "de": "Einstellungen öffnen",
+   "ja": "設定を開く",
+   "ko": "설정 열기",
+   "zh-Hans": "打开设置",
+   "pt-BR": "Abrir Ajustes"
+  },
+  "Open in Apple Maps": {
+   "es": "Abrir en Mapas",
+   "fr": "Ouvrir dans Plans",
+   "de": "In Karten öffnen",
+   "ja": "マップで開く",
+   "ko": "지도에서 열기",
+   "zh-Hans": "在“地图”中打开",
+   "pt-BR": "Abrir no Mapas"
+  },
+  "Opens the player": {
+   "es": "Abre el reproductor",
+   "fr": "Ouvre le lecteur",
+   "de": "Öffnet den Player",
+   "ja": "プレーヤーを開く",
+   "ko": "플레이어 열기",
+   "zh-Hans": "打开播放器",
+   "pt-BR": "Abre o player"
+  },
+  "Orange Line": {
+   "es": "Línea Naranja",
+   "fr": "Ligne orange",
+   "de": "Orange Linie",
+   "ja": "オレンジライン",
+   "ko": "오렌지 라인",
+   "zh-Hans": "橙线",
+   "pt-BR": "Linha Laranja"
+  },
+  "Owned": {
+   "es": "Comprado",
+   "fr": "Acheté",
+   "de": "Gekauft",
+   "ja": "購入済み",
+   "ko": "구매 완료",
+   "zh-Hans": "已购买",
+   "pt-BR": "Comprado"
+  },
+  "Pause": {
+   "es": "Pausa",
+   "fr": "Pause",
+   "de": "Pause",
+   "ja": "一時停止",
+   "ko": "일시정지",
+   "zh-Hans": "暂停",
+   "pt-BR": "Pausar"
+  },
+  "Pick a story": {
+   "es": "ELIGE UNA HISTORIA",
+   "fr": "CHOISIR UNE HISTOIRE",
+   "de": "EINE GESCHICHTE WÄHLEN",
+   "ja": "ストーリーを選ぶ",
+   "ko": "이야기 고르기",
+   "zh-Hans": "挑选一个故事",
+   "pt-BR": "ESCOLHA UMA HISTÓRIA"
+  },
+  "Play": {
+   "es": "Reproducir",
+   "fr": "Lire",
+   "de": "Abspielen",
+   "ja": "再生",
+   "ko": "재생",
+   "zh-Hans": "播放",
+   "pt-BR": "Reproduzir"
+  },
+  "Playback": {
+   "es": "Reproducción",
+   "fr": "Lecture",
+   "de": "Wiedergabe",
+   "ja": "再生",
+   "ko": "재생",
+   "zh-Hans": "播放",
+   "pt-BR": "Reprodução"
+  },
+  "Playback position": {
+   "es": "Posición de reproducción",
+   "fr": "Position de lecture",
+   "de": "Wiedergabeposition",
+   "ja": "再生位置",
+   "ko": "재생 위치",
+   "zh-Hans": "播放进度",
+   "pt-BR": "Posição de reprodução"
+  },
+  "Playback speed": {
+   "es": "Velocidad de reproducción",
+   "fr": "Vitesse de lecture",
+   "de": "Wiedergabegeschwindigkeit",
+   "ja": "再生速度",
+   "ko": "재생 속도",
+   "zh-Hans": "播放速度",
+   "pt-BR": "Velocidade de reprodução"
+  },
+  "Prev": {
+   "es": "Anterior",
+   "fr": "Précédent",
+   "de": "Zurück",
+   "ja": "前へ",
+   "ko": "이전",
+   "zh-Hans": "上一个",
+   "pt-BR": "Anterior"
+  },
+  "Previous stop": {
+   "es": "Parada anterior",
+   "fr": "Arrêt précédent",
+   "de": "Vorheriger Stopp",
+   "ja": "前のストップ",
+   "ko": "이전 정류장",
+   "zh-Hans": "上一站",
+   "pt-BR": "Parada anterior"
+  },
+  "Purchases arrive in the next update.": {
+   "es": "Las compras llegarán en la próxima actualización.",
+   "fr": "Les achats arrivent dans la prochaine mise à jour.",
+   "de": "Käufe folgen mit dem nächsten Update.",
+   "ja": "購入機能は次回のアップデートで追加されます。",
+   "ko": "구매 기능은 다음 업데이트에서 제공됩니다.",
+   "zh-Hans": "购买功能将在下次更新中推出。",
+   "pt-BR": "As compras chegam na próxima atualização."
+  },
+  "Red Line": {
+   "es": "Línea Roja",
+   "fr": "Ligne rouge",
+   "de": "Rote Linie",
+   "ja": "レッドライン",
+   "ko": "레드 라인",
+   "zh-Hans": "红线",
+   "pt-BR": "Linha Vermelha"
+  },
+  "Self-guided · 8 languages · first stop free": {
+   "es": "AUTOGUIADO · 8 IDIOMAS · PRIMERA PARADA GRATIS",
+   "fr": "EN AUTONOMIE · 8 LANGUES · PREMIER ARRÊT GRATUIT",
+   "de": "SELBSTGEFÜHRT · 8 SPRACHEN · ERSTER STOPP KOSTENLOS",
+   "ja": "セルフガイド · 8言語 · 最初のストップは無料",
+   "ko": "셀프 가이드 · 8개 언어 · 첫 정류장 무료",
+   "zh-Hans": "自助导览 · 8 种语言 · 第一站免费",
+   "pt-BR": "AUTOGUIADO · 8 IDIOMAS · PRIMEIRA PARADA GRÁTIS"
+  },
+  "Show all %lld area walks": {
+   "es": "Ver los %lld paseos por zonas",
+   "fr": "Voir les %lld balades par quartier",
+   "de": "Alle %lld Viertel-Spaziergänge anzeigen",
+   "ja": "%lld件のエリア散策をすべて表示",
+   "ko": "지역 워킹 투어 %lld개 모두 보기",
+   "zh-Hans": "显示全部 %lld 条街区步行路线",
+   "pt-BR": "Ver todos os %lld passeios por região"
+  },
+  "Show all %lld themed tours": {
+   "es": "Ver los %lld tours temáticos",
+   "fr": "Voir les %lld visites thématiques",
+   "de": "Alle %lld Themen-Touren anzeigen",
+   "ja": "%lld件のテーマ別ツアーをすべて表示",
+   "ko": "테마 투어 %lld개 모두 보기",
+   "zh-Hans": "显示全部 %lld 个主题导览",
+   "pt-BR": "Ver todos os %lld tours temáticos"
+  },
+  "Show fewer area walks": {
+   "es": "Ver menos paseos por zonas",
+   "fr": "Voir moins de balades par quartier",
+   "de": "Weniger Viertel-Spaziergänge anzeigen",
+   "ja": "エリア散策の表示を減らす",
+   "ko": "지역 워킹 투어 줄여 보기",
+   "zh-Hans": "收起街区步行路线",
+   "pt-BR": "Ver menos passeios por região"
+  },
+  "Show fewer themed tours": {
+   "es": "Ver menos tours temáticos",
+   "fr": "Voir moins de visites thématiques",
+   "de": "Weniger Themen-Touren anzeigen",
+   "ja": "テーマ別ツアーの表示を減らす",
+   "ko": "테마 투어 줄여 보기",
+   "zh-Hans": "收起主题导览",
+   "pt-BR": "Ver menos tours temáticos"
+  },
+  "Show stop": {
+   "es": "Mostrar parada",
+   "fr": "Afficher l’arrêt",
+   "de": "Stopp anzeigen",
+   "ja": "ストップを表示",
+   "ko": "정류장 보기",
+   "zh-Hans": "查看站点",
+   "pt-BR": "Mostrar parada"
+  },
+  "Silver Line": {
+   "es": "Línea Plateada",
+   "fr": "Ligne argentée",
+   "de": "Silberne Linie",
+   "ja": "シルバーライン",
+   "ko": "실버 라인",
+   "zh-Hans": "银线",
+   "pt-BR": "Linha Prata"
+  },
+  "Speed": {
+   "es": "Velocidad",
+   "fr": "Vitesse",
+   "de": "Geschwindigkeit",
+   "ja": "速度",
+   "ko": "속도",
+   "zh-Hans": "速度",
+   "pt-BR": "Velocidade"
+  },
+  "Start at a Metro stop, listen as you walk, and explore museums, monuments, food halls, and hidden neighborhoods at your own pace.": {
+   "es": "Comience en una estación de Metro, escuche mientras camina y explore museos, monumentos, mercados y barrios escondidos a su propio ritmo.",
+   "fr": "Commencez à une station de métro, écoutez en marchant et découvrez musées, monuments, marchés et quartiers cachés à votre rythme.",
+   "de": "Starten Sie an einer Metro-Station, hören Sie beim Laufen zu und entdecken Sie Museen, Monumente, Markthallen und versteckte Viertel in Ihrem eigenen Tempo.",
+   "ja": "地下鉄駅から始めて、歩きながら音声を聞き、博物館、記念碑、フードホール、隠れた街並みを自分のペースで楽しめます。",
+   "ko": "메트로 역에서 시작해 걸으며 오디오를 듣고, 박물관, 기념물, 푸드홀, 숨겨진 동네를 내 속도로 둘러보세요.",
+   "zh-Hans": "从地铁站出发，边走边听，按自己的节奏探索博物馆、纪念碑、美食广场和隐藏街区。",
+   "pt-BR": "Comece em uma estação, ouça enquanto caminha e explore museus, monumentos, mercados e bairros escondidos no seu ritmo."
+  },
+  "Start free": {
+   "es": "Empieza gratis",
+   "fr": "Commencer gratuitement",
+   "de": "Kostenlos starten",
+   "ja": "無料で始める",
+   "ko": "무료로 시작하기",
+   "zh-Hans": "免费开始",
+   "pt-BR": "Começar grátis"
+  },
+  "Start here": {
+   "es": "Empieza aquí",
+   "fr": "Commencez ici",
+   "de": "Hier starten",
+   "ja": "ここから始めよう",
+   "ko": "여기서 시작하세요",
+   "zh-Hans": "从这里开始",
+   "pt-BR": "Comece aqui"
+  },
+  "Start tour": {
+   "es": "Empezar tour",
+   "fr": "Démarrer la visite",
+   "de": "Tour starten",
+   "ja": "ツアーを開始",
+   "ko": "투어 시작",
+   "zh-Hans": "开始导览",
+   "pt-BR": "Iniciar tour"
+  },
+  "Stop %lld of %lld": {
+   "es": "Parada %1$lld de %2$lld",
+   "fr": "Arrêt %1$lld sur %2$lld",
+   "de": "Stopp %1$lld von %2$lld",
+   "ja": "スポット %1$lld / %2$lld",
+   "ko": "스팟 %1$lld / %2$lld",
+   "zh-Hans": "第 %1$lld 站，共 %2$lld 站",
+   "pt-BR": "Parada %1$lld de %2$lld"
+  },
+  "Stop not found": {
+   "es": "Parada no encontrada",
+   "fr": "Arrêt introuvable",
+   "de": "Stopp nicht gefunden",
+   "ja": "ストップが見つかりません",
+   "ko": "정류장을 찾을 수 없습니다",
+   "zh-Hans": "未找到该站点",
+   "pt-BR": "Parada não encontrada"
+  },
+  "Stop overview": {
+   "es": "Resumen de paradas",
+   "fr": "Aperçu des arrêts",
+   "de": "Stopps im Überblick",
+   "ja": "ストップ一覧",
+   "ko": "정류장 개요",
+   "zh-Hans": "站点总览",
+   "pt-BR": "Visão geral das paradas"
+  },
+  "Text and narration": {
+   "es": "Texto y narración",
+   "fr": "Texte et narration",
+   "de": "Text und Erzählung",
+   "ja": "テキストと音声ガイド",
+   "ko": "텍스트 및 내레이션",
+   "zh-Hans": "文字与讲解",
+   "pt-BR": "Texto e narração"
+  },
+  "The first stop of every tour is free. Unlock %@ to hear every stop.": {
+   "es": "La primera parada de cada tour es gratis. Desbloquea %@ para escuchar todas las paradas.",
+   "fr": "Le premier arrêt de chaque visite est gratuit. Débloquez %@ pour écouter tous les arrêts.",
+   "de": "Der erste Stopp jeder Tour ist kostenlos. Schalten Sie %@ frei, um alle Stopps zu hören.",
+   "ja": "各ツアーの最初のストップは無料です。%@をアンロックすると、すべてのストップを聴けます。",
+   "ko": "모든 투어의 첫 정류장은 무료입니다. %@을(를) 잠금 해제하면 모든 정류장을 들을 수 있습니다.",
+   "zh-Hans": "每个导览的第一站免费。解锁“%@”即可收听全部站点。",
+   "pt-BR": "A primeira parada de cada tour é grátis. Desbloqueie %@ para ouvir todas as paradas."
+  },
+  "This stop is part of the full tour": {
+   "es": "Esta parada forma parte del tour completo",
+   "fr": "Cet arrêt fait partie de la visite complète",
+   "de": "Dieser Stopp gehört zur vollständigen Tour",
+   "ja": "このストップは完全版ツアーに含まれます",
+   "ko": "이 정류장은 전체 투어에 포함되어 있습니다",
+   "zh-Hans": "此站属于完整导览",
+   "pt-BR": "Esta parada faz parte do tour completo"
+  },
+  "Tour not found": {
+   "es": "Tour no encontrado",
+   "fr": "Visite introuvable",
+   "de": "Tour nicht gefunden",
+   "ja": "ツアーが見つかりません",
+   "ko": "투어를 찾을 수 없습니다",
+   "zh-Hans": "未找到该导览",
+   "pt-BR": "Tour não encontrado"
+  },
+  "Tours": {
+   "es": "Tours",
+   "fr": "Visites",
+   "de": "Touren",
+   "ja": "ツアー",
+   "ko": "투어",
+   "zh-Hans": "导览",
+   "pt-BR": "Passeios"
+  },
+  "Turn on Location in Settings to see stops near you.": {
+   "es": "Activa la ubicación en Ajustes para ver las paradas cercanas.",
+   "fr": "Activez la localisation dans les Réglages pour voir les arrêts à proximité.",
+   "de": "Aktivieren Sie die Ortungsdienste in den Einstellungen, um Stopps in Ihrer Nähe zu sehen.",
+   "ja": "近くのストップを表示するには、設定で位置情報をオンにしてください。",
+   "ko": "주변 정류장을 보려면 설정에서 위치를 켜 주세요.",
+   "zh-Hans": "请在“设置”中开启定位，以查看附近的站点。",
+   "pt-BR": "Ative a localização em Ajustes para ver as paradas por perto."
+  },
+  "Turn-by-turn": {
+   "es": "Paso a paso",
+   "fr": "Pas à pas",
+   "de": "Schritt für Schritt",
+   "ja": "ターンバイターン",
+   "ko": "턴바이턴 안내",
+   "zh-Hans": "逐向导航",
+   "pt-BR": "Passo a passo"
+  },
+  "Turn-by-turn Metro": {
+   "es": "Metro paso a paso",
+   "fr": "Métro étape par étape",
+   "de": "Metro Schritt für Schritt",
+   "ja": "メトロを一歩ずつ案内",
+   "ko": "메트로 단계별 안내",
+   "zh-Hans": "地铁逐步指引",
+   "pt-BR": "Metrô passo a passo"
+  },
+  "Version": {
+   "es": "Versión",
+   "fr": "Version",
+   "de": "Version",
+   "ja": "バージョン",
+   "ko": "버전",
+   "zh-Hans": "版本",
+   "pt-BR": "Versão"
+  },
+  "Walk one area": {
+   "es": "RECORRE UNA ZONA",
+   "fr": "PARCOURIR UN QUARTIER",
+   "de": "EIN VIERTEL ERLAUFEN",
+   "ja": "エリアを歩く",
+   "ko": "한 지역 걷기",
+   "zh-Hans": "步行一个街区",
+   "pt-BR": "CAMINHE POR UMA REGIÃO"
+  },
+  "Walking directions aren't available right now.": {
+   "es": "Las indicaciones a pie no están disponibles ahora.",
+   "fr": "Les itinéraires à pied ne sont pas disponibles pour le moment.",
+   "de": "Wegbeschreibungen zu Fuß sind derzeit nicht verfügbar.",
+   "ja": "現在、徒歩ルートを取得できません。",
+   "ko": "지금은 도보 길 안내를 이용할 수 없습니다.",
+   "zh-Hans": "暂时无法获取步行路线。",
+   "pt-BR": "As direções a pé não estão disponíveis no momento."
+  },
+  "Walking times are estimates; each stop shows a live route from Apple Maps.": {
+   "es": "Los tiempos a pie son estimaciones; cada parada muestra una ruta actualizada de Mapas.",
+   "fr": "Les durées de marche sont estimées ; chaque arrêt affiche un itinéraire en direct de Plans.",
+   "de": "Gehzeiten sind Schätzungen; bei jedem Stopp wird eine aktuelle Route aus Karten angezeigt.",
+   "ja": "徒歩時間は目安です。各ストップではマップのリアルタイムのルートを表示します。",
+   "ko": "도보 시간은 예상치이며, 각 정류장에서 지도의 실시간 경로를 확인할 수 있습니다.",
+   "zh-Hans": "步行时间仅为估算；每个站点都会显示“地图”提供的实时路线。",
+   "pt-BR": "Os tempos a pé são estimativas; cada parada mostra uma rota em tempo real do Mapas."
+  },
+  "Washington DC self-guided audio tours, walkable and accessible by Metro": {
+   "es": "Tours autoguiados en audio por Washington DC, recorribles a pie y accesibles en Metro",
+   "fr": "Visites audio autoguidées de Washington DC, à pied et accessibles en métro",
+   "de": "Selbstgeführte Audio-Touren durch Washington DC – zu Fuß erkundbar und mit der Metro erreichbar",
+   "ja": "ワシントンDCのセルフガイド音声ツアー — 徒歩で巡れて地下鉄でアクセス可能",
+   "ko": "워싱턴 DC 셀프 가이드 오디오 투어 — 도보로 즐기고 메트로로 편하게",
+   "zh-Hans": "华盛顿 DC 自助语音导览 — 可步行游览，地铁直达",
+   "pt-BR": "Passeios em áudio autoguiados por Washington DC, a pé e acessíveis de metrô"
+  },
+  "While using the app": {
+   "es": "Al usar la app",
+   "fr": "Pendant l’utilisation",
+   "de": "Beim Verwenden der App",
+   "ja": "App使用中",
+   "ko": "앱 사용 중",
+   "zh-Hans": "使用应用时",
+   "pt-BR": "Ao usar o app"
+  },
+  "With “Always” location, your phone tells you when you reach the next stop even with the screen off. Your location never leaves your device.": {
+   "es": "Con la ubicación «Siempre», tu teléfono te avisa al llegar a la siguiente parada aunque la pantalla esté apagada. Tu ubicación nunca sale de tu dispositivo.",
+   "fr": "Avec la localisation « Toujours », votre téléphone vous prévient à l’arrivée au prochain arrêt, même écran éteint. Votre position ne quitte jamais votre appareil.",
+   "de": "Mit dem Standortzugriff „Immer“ benachrichtigt Sie Ihr Telefon, sobald Sie den nächsten Stopp erreichen – auch bei ausgeschaltetem Bildschirm. Ihr Standort verlässt nie Ihr Gerät.",
+   "ja": "位置情報を「常に」にすると、画面がオフでも次のストップに着いたときに通知します。位置情報がデバイスの外に出ることはありません。",
+   "ko": "위치를 ‘항상’으로 설정하면 화면이 꺼져 있어도 다음 정류장에 도착했을 때 알려 드립니다. 위치 정보는 기기 밖으로 나가지 않습니다.",
+   "zh-Hans": "将定位设为“始终”后，即使屏幕关闭，到达下一站时手机也会提醒您。您的位置信息不会离开设备。",
+   "pt-BR": "Com a localização “Sempre”, seu telefone avisa quando você chega à próxima parada, mesmo com a tela apagada. Sua localização nunca sai do seu dispositivo."
+  },
+  "Yellow Line": {
+   "es": "Línea Amarilla",
+   "fr": "Ligne jaune",
+   "de": "Gelbe Linie",
+   "ja": "イエローライン",
+   "ko": "옐로 라인",
+   "zh-Hans": "黄线",
+   "pt-BR": "Linha Amarela"
+  },
+  "You've arrived": {
+   "es": "Has llegado",
+   "fr": "Vous êtes arrivé",
+   "de": "Sie sind angekommen",
+   "ja": "到着しました",
+   "ko": "도착했습니다",
+   "zh-Hans": "您已到达",
+   "pt-BR": "Você chegou"
+  }
+ },
+ "infoPlist": {
+  "NSLocationWhenInUseUsageDescription": {
+   "en": "DC Audio Tours shows where you are on the walk and tells you when you reach the next stop.",
+   "es": "DC Audio Tours muestra dónde estás en el recorrido y te avisa cuando llegas a la siguiente parada.",
+   "fr": "DC Audio Tours affiche votre position sur le parcours et vous prévient à l’arrivée au prochain arrêt.",
+   "de": "DC Audio Tours zeigt Ihnen, wo Sie auf der Route sind, und meldet sich, wenn Sie den nächsten Stopp erreichen.",
+   "ja": "DC Audio Toursは、ルート上の現在地を表示し、次のストップに着いたときにお知らせします。",
+   "ko": "DC Audio Tours는 경로에서 내 위치를 보여 주고 다음 정류장에 도착하면 알려 드립니다.",
+   "zh-Hans": "DC Audio Tours 会在导览路线上显示您的位置，并在您到达下一站时提醒您。",
+   "pt-BR": "O DC Audio Tours mostra onde você está no percurso e avisa quando você chega à próxima parada."
+  },
+  "NSLocationAlwaysAndWhenInUseUsageDescription": {
+   "en": "Allow location in the background so your phone can tell you when you arrive at the next stop, even with the screen off.",
+   "es": "Permite la ubicación en segundo plano para que tu teléfono te avise al llegar a la siguiente parada, incluso con la pantalla apagada.",
+   "fr": "Autorisez la localisation en arrière-plan pour que votre téléphone vous prévienne à l’arrivée au prochain arrêt, même écran éteint.",
+   "de": "Erlauben Sie den Standortzugriff im Hintergrund, damit Ihr Telefon Sie bei der Ankunft am nächsten Stopp benachrichtigt – auch bei ausgeschaltetem Bildschirm.",
+   "ja": "バックグラウンドでの位置情報を許可すると、画面がオフでも次のストップに着いたときにお知らせします。",
+   "ko": "백그라운드 위치를 허용하면 화면이 꺼져 있어도 다음 정류장에 도착했을 때 알려 드립니다.",
+   "zh-Hans": "允许后台定位后，即使屏幕关闭，到达下一站时手机也会提醒您。",
+   "pt-BR": "Permita a localização em segundo plano para que seu telefone avise quando você chegar à próxima parada, mesmo com a tela apagada."
+  }
+ }
+}

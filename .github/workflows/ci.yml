@@ -6,6 +6,13 @@ on:
   pull_request:
 
 jobs:
+  # Translations and Swift call sites must agree: every user-facing literal has a key in all 8 languages.
+  strings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/check-strings.py
+
   # Pure-Swift core: models, access rules, geofence planner, and data-quality checks on the
   # bundled content. Runs on Linux, so it is fast and cheap.
   tourkit:

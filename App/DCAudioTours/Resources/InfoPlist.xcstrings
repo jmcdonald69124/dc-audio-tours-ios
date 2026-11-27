@@ -1,0 +1,112 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSLocationAlwaysAndWhenInUseUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlauben Sie den Standortzugriff im Hintergrund, damit Ihr Telefon Sie bei der Ankunft am nächsten Stopp benachrichtigt – auch bei ausgeschaltetem Bildschirm."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow location in the background so your phone can tell you when you arrive at the next stop, even with the screen off."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite la ubicación en segundo plano para que tu teléfono te avise al llegar a la siguiente parada, incluso con la pantalla apagada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorisez la localisation en arrière-plan pour que votre téléphone vous prévienne à l’arrivée au prochain arrêt, même écran éteint."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バックグラウンドでの位置情報を許可すると、画面がオフでも次のストップに着いたときにお知らせします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "백그라운드 위치를 허용하면 화면이 꺼져 있어도 다음 정류장에 도착했을 때 알려 드립니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permita a localização em segundo plano para que seu telefone avise quando você chegar à próxima parada, mesmo com a tela apagada."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "允许后台定位后，即使屏幕关闭，到达下一站时手机也会提醒您。"
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DC Audio Tours zeigt Ihnen, wo Sie auf der Route sind, und meldet sich, wenn Sie den nächsten Stopp erreichen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DC Audio Tours shows where you are on the walk and tells you when you reach the next stop."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DC Audio Tours muestra dónde estás en el recorrido y te avisa cuando llegas a la siguiente parada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DC Audio Tours affiche votre position sur le parcours et vous prévient à l’arrivée au prochain arrêt."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DC Audio Toursは、ルート上の現在地を表示し、次のストップに着いたときにお知らせします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DC Audio Tours는 경로에서 내 위치를 보여 주고 다음 정류장에 도착하면 알려 드립니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O DC Audio Tours mostra onde você está no percurso e avisa quando você chega à próxima parada."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DC Audio Tours 会在导览路线上显示您的位置，并在您到达下一站时提醒您。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

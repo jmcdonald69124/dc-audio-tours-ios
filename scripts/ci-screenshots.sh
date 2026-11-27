@@ -52,5 +52,11 @@ shot area-light      light -open-tour area-national-mall
 shot locked-light    light -open-stop oddities/einstein-memorial
 shot nearby-light    light -tab nearby
 shot more-light      light -tab settings
-shot spanish-home    light -lang es
+# Languages (setLanguage persists, so finish by switching back to English)
+shot es-home         light -lang es
+shot es-stop         light -lang es -open-stop museums-monuments/american-history
+shot ja-home         light -lang ja
+shot zh-more         light -lang zh -tab settings
+shot de-area         light -lang de -open-tour area-national-mall
+shot reset-en        light -lang en
 ls -la "$OUT"

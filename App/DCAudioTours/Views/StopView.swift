@@ -212,7 +212,7 @@ private struct StopPlayerCard: View {
                 .buttonStyle(.editorial(fill: Ed.accent, ink: Ed.onAccent, fullWidth: true))
             }
             if isCurrent, let error = model.audio.errorMessage {
-                Text(error).font(.footnote).foregroundStyle(Ed.textMuted)
+                Text(LocalizedStringKey(error)).font(.footnote).foregroundStyle(Ed.textMuted)
             }
         }
         .card()

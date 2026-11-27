@@ -32,17 +32,17 @@ public enum TourLanguage: String, CaseIterable, Codable, Sendable, Identifiable,
         }
     }
 
-    /// Locale used for speech/formatting (zh = Simplified, pt = Brazilian).
+    /// Locale / localization identifier — matches the app's `.lproj` folders (zh = Simplified, pt = Brazilian).
     public var localeIdentifier: String {
         switch self {
-        case .en: "en_US"
-        case .es: "es_ES"
-        case .fr: "fr_FR"
-        case .de: "de_DE"
-        case .ja: "ja_JP"
-        case .ko: "ko_KR"
-        case .zh: "zh_CN"
-        case .pt: "pt_BR"
+        case .en: "en"
+        case .es: "es"
+        case .fr: "fr"
+        case .de: "de"
+        case .ja: "ja"
+        case .ko: "ko"
+        case .zh: "zh-Hans"
+        case .pt: "pt-BR"
         }
     }
 

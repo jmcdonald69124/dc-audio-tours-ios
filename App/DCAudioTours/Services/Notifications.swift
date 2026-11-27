@@ -1,3 +1,4 @@
+import TourKit
 import UserNotifications
 
 /// Local notifications announce arrival at a stop when the app is in the background.
@@ -26,9 +27,9 @@ enum ArrivalNotifications {
         _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
     }
 
-    static func post(stopName: String, tourTitle: String, tourId: String, stopId: String) {
+    static func post(stopName: String, tourTitle: String, tourId: String, stopId: String, language: TourLanguage) {
         let content = UNMutableNotificationContent()
-        content.title = String(localized: "You've arrived")
+        content.title = L10n.string("You've arrived", language: language)
         content.body = "\(stopName) · \(tourTitle)"
         content.sound = .default
         content.userInfo = ["tourId": tourId, "stopId": stopId]

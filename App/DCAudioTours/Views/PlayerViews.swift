@@ -51,7 +51,7 @@ struct PlayerControls: View {
                     }
                     .frame(width: 64, height: 64)
                 }
-                .accessibilityLabel(audio.isPlaying ? "Pause" : "Play")
+                .accessibilityLabel(audio.isPlaying ? Text("Pause") : Text("Play"))
 
                 Button { audio.skip(by: 15) } label: { Image(systemName: "goforward.15").font(.title2).foregroundStyle(Ed.textStrong) }
                     .accessibilityLabel("Forward 15 seconds")
@@ -104,7 +104,7 @@ struct MiniPlayerBar: View {
                         .contentTransition(.symbolEffect(.replace))
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel(audio.isPlaying ? "Pause" : "Play")
+                .accessibilityLabel(audio.isPlaying ? Text("Pause") : Text("Play"))
             }
             .padding(.leading, 16).padding(.trailing, 6).padding(.vertical, 6)
             .background(Ed.surface, in: RoundedRectangle(cornerRadius: 16, style: .continuous))

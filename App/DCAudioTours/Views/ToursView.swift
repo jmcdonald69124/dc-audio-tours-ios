@@ -51,6 +51,8 @@ struct ToursView: View {
         let free = catalog.tour(id: catalog.freeTourId)
         let areas = catalog.areaTours
         let themed = catalog.themedTours.filter { $0.id != catalog.freeTourId }
+        let areaToggle: LocalizedStringKey = showAllAreas ? "Show fewer area walks" : "Show all \(areas.count) area walks"
+        let themedToggle: LocalizedStringKey = showAllThemed ? "Show fewer themed tours" : "Show all \(themed.count) themed tours"
         let areaRows = showAllAreas ? areas : Array(areas.prefix(3))
         let themedRows = showAllThemed ? themed : Array(themed.prefix(3))
 
@@ -71,7 +73,7 @@ struct ToursView: View {
 
             rows("Walk one area", tours: areaRows, indexed: false)
             if areas.count > 3 {
-                Button(showAllAreas ? "Show fewer area walks" : "Show all \(areas.count) area walks") {
+                Button(areaToggle) {
                     withAnimation { showAllAreas.toggle() }
                 }
                 .buttonStyle(.ghost)
@@ -80,7 +82,7 @@ struct ToursView: View {
 
             rows("Pick a story", tours: themedRows, indexed: true)
             if themed.count > 3 {
-                Button(showAllThemed ? "Show fewer themed tours" : "Show all \(themed.count) themed tours") {
+                Button(themedToggle) {
                     withAnimation { showAllThemed.toggle() }
                 }
                 .buttonStyle(.ghost)

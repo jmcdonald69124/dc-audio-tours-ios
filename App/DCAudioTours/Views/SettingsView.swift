@@ -15,7 +15,7 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    LabeledContent("Location", value: locationStatus)
+                    LabeledContent("Location") { Text(locationStatus) }
                     if model.location.authorization == .authorizedWhenInUse {
                         Button("Allow alerts while walking") { model.location.requestAlways() }
                     }
@@ -64,12 +64,12 @@ struct SettingsView: View {
         return "\(short) (\(build))"
     }
 
-    private var locationStatus: String {
+    private var locationStatus: LocalizedStringKey {
         switch model.location.authorization {
-        case .authorizedAlways: String(localized: "Always")
-        case .authorizedWhenInUse: String(localized: "While using the app")
-        case .denied, .restricted: String(localized: "Off")
-        default: String(localized: "Not set")
+        case .authorizedAlways: "Always"
+        case .authorizedWhenInUse: "While using the app"
+        case .denied, .restricted: "Off"
+        default: "Not set"
         }
     }
 }

@@ -44,6 +44,8 @@ targets:
       path: App/DCAudioTours/Info.plist
       properties:
         CFBundleDisplayName: DC Audio Tours
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations: [en, es, fr, de, ja, ko, zh-Hans, pt-BR]
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false

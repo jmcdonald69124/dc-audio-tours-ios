@@ -12,7 +12,7 @@ struct LineBadge: View {
             .foregroundStyle(Theme.ink(on: line))
             .frame(width: size, height: size)
             .background(Theme.color(line), in: RoundedRectangle(cornerRadius: size * 0.27, style: .continuous))
-            .accessibilityLabel("\(line.rawValue) Line")
+            .accessibilityLabel(Text(LocalizedStringKey("\(line.rawValue) Line")))
     }
 }
 

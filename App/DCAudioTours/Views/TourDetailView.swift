@@ -46,11 +46,12 @@ struct TourDetailView: View {
                 Text(metaLine(tour)).font(.system(size: 15)).foregroundStyle(Ed.textMuted)
             }
 
+            let ctaTitle: LocalizedStringKey = started ? "Continue tour" : "Start tour"
             Button {
                 model.startTour(tour)
                 if let next { model.toursPath.append(StopRoute(tourId: tour.id, stopId: next.id)) }
             } label: {
-                Label(started ? "Continue tour" : "Start tour", systemImage: "play.fill")
+                Label(ctaTitle, systemImage: "play.fill")
             }
             .buttonStyle(.editorial)
         }
@@ -60,12 +61,18 @@ struct TourDetailView: View {
         .padding(.bottom, 32)
     }
 
-    private func metaLine(_ tour: Tour) -> String {
-        let stops = "\(tour.stops.count) stops"
+    private func metaLine(_ tour: Tour) -> LocalizedStringKey {
+        let count = tour.stops.count
         if let route = tour.route {
-            return "\(stops) · \(Formatters.distance(Double(route.totalMeters))) on foot"
+            return "\(count) stops · \(Formatters.distance(Double(route.totalMeters))) on foot"
         }
-        return tour.isFree ? "\(stops) · free" : "\(stops) · first stop free"
+        if tour.isFree { return "\(count) stops · free" }
+        return "\(count) stops · first stop free"
+    }
+
+    private func overviewNote(_ tour: Tour) -> LocalizedStringKey {
+        if tour.kind == .area { return "Every stop, in walking order." }
+        return "Every stop, in tour order — route paths are approximate."
     }
 
     // MARK: Stop overview — map on a tinted band
@@ -73,7 +80,7 @@ struct TourDetailView: View {
     private func overview(_ tour: Tour) -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Eyebrow("Stop overview")
-            Text(tour.kind == .area ? "Every stop, in walking order." : "Every stop, in tour order — route paths are approximate.")
+            Text(overviewNote(tour))
                 .font(.system(size: 15)).foregroundStyle(Ed.textMuted)
 
             TourMapView(tour: tour)
