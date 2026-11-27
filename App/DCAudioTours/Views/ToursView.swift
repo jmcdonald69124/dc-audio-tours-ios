@@ -133,14 +133,10 @@ private struct HeroBand: View {
                 .font(.system(size: 16)).lineSpacing(4)
                 .foregroundStyle(Ed.heroMuted)
 
-            HStack(spacing: 12) {
-                Button(action: onStartFree) {
-                    Label("Start free", systemImage: "play.fill")
-                }
-                .buttonStyle(.editorial(fill: Ed.heroAccent, ink: Color(hex: 0x1A1714)))
-
-                Button("Browse all tours", action: onBrowse)
-                    .buttonStyle(.ghostOnDark)
+            // Side by side when they fit; stacked in longer languages (e.g. Spanish, German).
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 12) { startButton; browseButton }
+                VStack(alignment: .leading, spacing: 12) { startButton; browseButton }
             }
 
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), alignment: .leading)], alignment: .leading, spacing: 8) {
@@ -161,6 +157,18 @@ private struct HeroBand: View {
             }
             .ignoresSafeArea(edges: .top)
         }
+    }
+
+    private var startButton: some View {
+        Button(action: onStartFree) { Label("Start free", systemImage: "play.fill") }
+            .buttonStyle(.editorial(fill: Ed.heroAccent, ink: Color(hex: 0x1A1714)))
+            .fixedSize(horizontal: true, vertical: false)
+    }
+
+    private var browseButton: some View {
+        Button("Browse all tours", action: onBrowse)
+            .buttonStyle(.ghostOnDark)
+            .fixedSize(horizontal: true, vertical: false)
     }
 
     private func check(_ text: LocalizedStringKey) -> some View {

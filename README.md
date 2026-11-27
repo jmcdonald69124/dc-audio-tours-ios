@@ -46,6 +46,15 @@ Run the core tests without Xcode (Linux or macOS):
 swift test --package-path Packages/TourKit
 ```
 
+## Languages
+
+Tour content *and* the interface are in 8 languages (en, es, fr, de, ja, ko, zh-Hans, pt-BR), switchable in the
+app independently of the phone's language. `Localization/strings.json` is the source of truth (29 strings reuse
+the web app's translations; the rest are new); `scripts/build-strings.py` generates the String Catalogs and
+`scripts/check-strings.py` (CI) fails on a missing translation, a mismatched `%@`/`%lld`, or a Swift string that
+bypasses localization. Translations were machine-authored and have not had a native-speaker review.
+Known gap: walking-route notes and exit directions in the catalog are English-only (as on the web).
+
 ## Layout
 
 ```
